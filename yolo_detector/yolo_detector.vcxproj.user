@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- F5 in Visual Studio: run from repo root with the same arguments/DLL paths as run.bat -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerWorkingDirectory>$(RepoRoot)</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>config.json 4k-highway-traffic.mp4 4k-highway-traffic-detect.mp4</LocalDebuggerCommandArguments>
+    <LocalDebuggerEnvironment>PATH=$(TensorRTBinDir);$(TensorRTLibDir);$(OpenCVBinDir);$(CudaToolkitBinDir);%PATH%</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerWorkingDirectory>$(RepoRoot)</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>config.json 4k-highway-traffic.mp4 4k-highway-traffic-detect.mp4</LocalDebuggerCommandArguments>
+    <LocalDebuggerEnvironment>PATH=$(TensorRTBinDir);$(TensorRTLibDir);$(OpenCVBinDir);$(CudaToolkitBinDir);%PATH%</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>
