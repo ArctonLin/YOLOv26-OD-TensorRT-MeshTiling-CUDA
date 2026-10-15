@@ -4,7 +4,26 @@ High-Resolution (4K/8K) Real-Time YOLO Object Detection on NVIDIA TensorRT with 
 
 ---
 
+## Benchmark & Performance
+
+> [!NOTE]
+> Performance evaluated on **4K UHD (3840×2160)** video with an overlapping $7 \times 4$ grid (**28 tiles of 640×640** per frame) using YOLOv26n TensorRT FP16 engine.
+
+| Metric / Hardware Parameter | Benchmark Specification / Performance Result |
+| :--- | :--- |
+| **CPU** | **AMD Ryzen 7 5700X3D** (8 Cores / 16 Threads) |
+| **GPU** | **NVIDIA GeForce RTX 4070 Ti SUPER 16GB** |
+| **RAM** | **128 GB** (DDR4-3200 CL16 32GB × 4) |
+| **Resolution & Grid** | **4K UHD (3840 × 2160)** / $7 \times 4 = 28$ Tiles ($640 \times 640$) |
+| **End-to-End Pipeline Throughput** | **23.5 FPS @ 4K** (Real-Time 4K Video Processing) |
+| **Tile Inference Rate** | **658 Tiles/sec** ($28\text{ tiles} \times 23.5\text{ FPS}$) |
+| **Input Buffer Rate** | **584.76 MB/s** ($3840 \times 2160 \times 3 \times 23.5\text{ B/s} \approx 557.67\text{ MiB/s}$) |
+| **TensorRT Buffer Rate** | **808.55 MB/s** ($640 \times 640 \times 3 \times 28 \times 23.5\text{ B/s} \approx 771.09\text{ MiB/s}$)<br>*(FP16 Buffer Rate: **1,617.10 MB/s** / $1,542.19\text{ MiB/s}$)* |
+
+---
+
 ## Table of Contents
+- [Benchmark & Performance](#benchmark--performance)
 - [Demo](#demo)
 - [Introduction](#introduction)
 - [Key Features](#key-features)
@@ -269,14 +288,14 @@ Pre-decoding up to 1000 video frames into RAM (RAM usage est: ~23.17 GB)...
 Loaded 1000/1000 frames into RAM...
 Pre-decode complete! Total 1000 frames in RAM.
 Warming up 8 worker contexts...
-Processed Frame 50/1000 (34.2 ms/frame, 29.2 FPS) - Objects: 18
-Processed Frame 100/1000 (33.9 ms/frame, 29.5 FPS) - Objects: 21
+Processed Frame 50/1000 (42.5 ms/frame, 23.5 FPS) - Objects: 21
+Processed Frame 100/1000 (42.5 ms/frame, 23.5 FPS) - Objects: 20
 ...
 ==================================================
 All frames processed! Final flushing and finalizing video...
 Total Frames: 1000
-Total Elapsed Time: 33.82 s
-Average Pipeline Speed: 29.57 FPS (33.82 ms/frame)
+Total Elapsed Time: 42.55 s
+Average Pipeline Speed: 23.50 FPS (42.55 ms/frame)
 Output saved to: 4k-highway-traffic-detect.mp4
 ==================================================
 ```
