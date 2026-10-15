@@ -320,3 +320,13 @@ Output saved to: 4k-highway-traffic-detect.mp4
 ## License
 
 This project is licensed under the Apache 2.0 License.
+
+---
+
+## Support
+
+<div align="center">
+  <a href="https://buymeacoffee.com/arcton" target="_blank">
+    <img src="buymeacoffee.jpg" alt="Buy Me A Coffee" width="360">
+  </a>
+</div>
