@@ -1,0 +1,16 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Build & Model Artifacts
+*.engine
+*.onnx
+
+# Python cache & venv
+__pycache__/
+*.pyc
+venv/
+.env/
