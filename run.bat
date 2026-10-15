@@ -14,9 +14,13 @@ if not defined BUILD_CONFIG  set "BUILD_CONFIG=Release"
 REM Runtime DLL search path (TensorRT / OpenCV / CUDA) + trtexec
 set "PATH=%TENSORRT_ROOT%\bin;%TENSORRT_ROOT%\lib;%OPENCV_ROOT%\x64\vc17\bin;%CUDA_PATH%\bin;%PATH%"
 
-REM Python: prefer a Windows venv if present
-set "PYTHON=python"
-if exist "venv\Scripts\python.exe" set "PYTHON=venv\Scripts\python.exe"
+REM Python: prefer environment variable, active conda env, local venv, or known conda env
+if not defined PYTHON (
+    if defined CONDA_PREFIX if exist "%CONDA_PREFIX%\python.exe" set "PYTHON=%CONDA_PREFIX%\python.exe"
+    if not defined PYTHON if exist "venv\Scripts\python.exe" set "PYTHON=venv\Scripts\python.exe"
+    if not defined PYTHON if exist "C:\Users\Card\anaconda3\envs\yolo11\python.exe" set "PYTHON=C:\Users\Card\anaconda3\envs\yolo11\python.exe"
+    if not defined PYTHON set "PYTHON=python"
+)
 
 REM ---------------------------------------------------------------------------
 REM Export model using config.json if engine does not exist
@@ -29,7 +33,7 @@ echo Exporting model to ONNX using settings from config.json...
 if errorlevel 1 goto :fail
 
 echo Building TensorRT engine using trtexec to match C++ API version perfectly...
-trtexec --onnx=yolo26n.onnx --saveEngine=yolo26n.engine
+trtexec --onnx=yolo26n.onnx --saveEngine=yolo26n.engine --fp16
 if errorlevel 1 goto :fail
 goto :build
 
