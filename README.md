@@ -16,9 +16,9 @@ High-Resolution (4K/8K) Real-Time YOLO Object Detection on NVIDIA TensorRT with 
 | **RAM** | **128 GB** (DDR4-3200 CL16 32GB × 4) |
 | **Resolution & Grid** | **4K UHD (3840 × 2160)** / $7 \times 4 = 28$ Tiles ($640 \times 640$) |
 | **End-to-End Pipeline Throughput** | **23.5 FPS @ 4K** (Real-Time 4K Video Processing) |
-| **Tile Inference Rate** | **658 Tiles/sec** ($28\text{ tiles} \times 23.5\text{ FPS}$) |
+| **Tile Inference Rate** | **658 Tiles/sec @640x640x3** ($28\text{ tiles} \times 23.5\text{ FPS}$) |
 | **Input Buffer Rate** | **584.76 MB/s** ($3840 \times 2160 \times 3 \times 23.5\text{ B/s} \approx 557.67\text{ MiB/s}$) |
-| **TensorRT Buffer Rate** | **808.55 MB/s** ($640 \times 640 \times 3 \times 28 \times 23.5\text{ B/s} \approx 771.09\text{ MiB/s}$)<br>*(FP16 Buffer Rate: **1,617.10 MB/s** / $1,542.19\text{ MiB/s}$)* |
+| **TensorRT Buffer Rate** | **808.55 MB/s** ($640 \times 640 \times 3 \times 28 \times 23.5\text{ B/s} \approx 771.09\text{ MiB/s}$)|
 
 ---
 
