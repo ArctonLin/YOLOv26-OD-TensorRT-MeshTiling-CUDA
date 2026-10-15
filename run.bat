@@ -74,6 +74,15 @@ echo Running YOLO Detector on Video...
 "bin\x64\%BUILD_CONFIG%\yolo_detector.exe" config.json "%INPUT_VIDEO%" "%OUTPUT_VIDEO%"
 if errorlevel 1 goto :fail
 
+REM ---------------------------------------------------------------------------
+REM Compress Output Video with ffmpeg libx264 to 3Mbps
+REM ---------------------------------------------------------------------------
+echo Compressing %OUTPUT_VIDEO% to 3Mbps using ffmpeg libx264...
+ffmpeg -y -i "%OUTPUT_VIDEO%" -c:v libx264 -b:v 3M -maxrate 3.5M -bufsize 6M -pix_fmt yuv420p -preset fast "%OUTPUT_VIDEO%.tmp.mp4"
+if not errorlevel 1 (
+    move /y "%OUTPUT_VIDEO%.tmp.mp4" "%OUTPUT_VIDEO%"
+)
+
 endlocal
 exit /b 0
 
